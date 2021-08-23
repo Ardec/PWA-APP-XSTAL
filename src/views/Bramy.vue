@@ -353,16 +353,6 @@
       Wycena została wysłana
     </v-alert>
 </v-card>
-
-       <!-- <span class="sitetop">Zdjęcia i wizualizacje</span>
-       <v-card class="calcsection color-gr2">
-       <v-card-title class="text-center justify-center py-6">
-      <span class="sitemid">
-        3D RENDER
-      </span>
-    </v-card-title>
-    
-    </v-card> -->
     </v-col>
    </v-row>
     <v-bottom-navigation height="64px" v-model="value" fixed="true">
@@ -481,8 +471,6 @@ components: { ModelStl },
       rodzaj_stali: [
         {id:0,nazwa:'Profile z czarnej stali',cena_za_kg:6.3,gestosc:7600},
         {id:1,nazwa:'Profile ocynkowane',cena_za_kg:8.5,gestosc:7600},
-        // {id:2,nazwa:'Stal nierdzewna',cena_za_kg:10,gestosc:7800},
-        // {id:3,nazwa:'Aluminium',cena_za_kg:11,gestosc:2700},
         ],
         uslugi: [
         {id:0,nazwa:'Cynkowanie',cena:60,customdisabled:false},
@@ -694,16 +682,8 @@ components: { ModelStl },
         this.suma_kg = Math.round(this.profil_konstrukcja_waga + this.szyna_kg + this.ceownik_kg + this.wyp_kg + this.slup1_kg + this.slup2_kg)
         // this.suma_kg = this.profil_konstrukcja_waga + this.szyna_kg + this.ceownik_kg + this.wyp_kg
       },
-      // policz: function(){
-      //    for(this.naped;this.naped<10000;this.naped++){
-      //      return this.naped
-      //     //  return this.usl1[i].cena
-      //   }
-      // },
+
       calculate_pln: function(){
-        // this.uslugi_i_akcesoria_pln = 0
-      // this.suma_pln = this.zebatki*100 + this.wozki*300 + this.naped*2000 + this.zabudowy*60 + this.kotwy*100 + this.antaba*200 + this.stopa*1500 + this.montaz*2500 + this.transport_do_klienta*200 + this.cynk_cena + this.lakier_cena + ((this.suma_kg * this.rodzaj_stali[this.rodzaj_stali_wybrane_id].cena_za_kg)*this.narzut)
-      //
 
         this.suma_pln = Math.round(this.suma_akcesoria_pln*this.rodzaj_produktu[this.rodzaj_produktu_wybrane_id].narzut + this.transport_do_klienta*this.suma_kg + this.cynk_cena + this.lakier_cena + (this.montaz*(this.rodzaj_produktu[this.rodzaj_produktu_wybrane_id].montaz)) +((this.suma_kg * this.rodzaj_stali[this.rodzaj_stali_wybrane_id].cena_za_kg)*this.rodzaj_produktu[this.rodzaj_produktu_wybrane_id].narzut))
       },
@@ -732,26 +712,6 @@ components: { ModelStl },
          }
 
       },
-
-
-    // ffeach: function(){
-
-    //  if(this.usl1[1] == 0){return 100}
-
-    // this.usl1.foreach((qqq) =>
-    // {
-    // return this.usl1[qqq]
-    // }
-    // )
-
-    // Dlaczego nie wyświetla 10 razy i ani foreach ani for
-
-    // for (let i = 0; i < 10; i){
-    //   return this.usl1[i]
-    // }
-
-    // return Array.from(this.usl1).forEach(element => console.log(element)); // działa!!
-    // },
 
       ustawiaj_opcje: function(){
       this.akcf = []

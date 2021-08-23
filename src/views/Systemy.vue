@@ -1,41 +1,88 @@
 <template>
   <div class="systems">
+      
      <v-card class="calcsection color-gr2">
+       <h3 pcolor="primary" class="display-2 mt-4 ml-4 font-weight-light">Planer Ogrodzenia KOST-BET Royal Slim</h3>
        <v-card-title class="text-center justify-center py-6">
-      <span class="sitemid">
-        Konfigurator ogrodzeń kost-bet 
-      </span>
     </v-card-title>
-    <v-select @input="rysuj_mape()" :items="bloczek" item-text="nazwa" item-value="id" v-model ="bloczek_id" label="Bloczek" outlined ></v-select>
-    <!-- <v-text-field type="number" outlined single-line step="1" v-model="dl_og"></v-text-field> -->
+        <div class="control-panel">
+        <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-shape-rectangle-plus</v-icon>Bloczek</v-btn>
+        <v-btn @click ="selected_draw = 2" class="ma-2 btn" dark color="black"><v-icon  medium color="white">mdi-menu</v-icon>Palisada</v-btn>
+        <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>
+        <div class="cena" color="primary"></div>
+        <v-textarea
+          label="ILOŚĆ BLOCZKÓW ( SZT )"
+          outlined
+          rows="1"
+          disabled
+          v-model="ilosc_bloczkow"
+        >
+        </v-textarea>
+
+        <v-textarea
+          label="POWIERZCHNIA PALISADY ( M2 )"
+          outlined
+          rows="1"
+          disabled
+          v-model="ilosc_paneli"
+        ></v-textarea>
+
+         <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Zacznij od nowa</v-btn>
+
+</div>
      </v-card>
           <horizontal-scroll>
           <div @mouseleave="draw_type = 0" v-bind:style="{width:szerokosc_mapy + 'px'}" class="mapa">
           <div @mousedown="draw_type = 1, Rysuj2(n)" @mouseover="Rysuj2(n)" @mouseup="draw_type = 0" :style="{height:height +'px' ,width:width + 'px'}" v-for="(v,n) in map" :key="n" :class='map[n].cla' class = "frame unselectable" ></div>
-          <!-- {{map[n].id}} -->
           </div>
          </horizontal-scroll>
 
+         <v-card>
+           <v-row>
+             <v-col>
+<h1 class="display-4 ml-10 mt-4">Royal Slim</h1>
+<h3 pcolor="primary" class="display-2 ml-10 mt-4 font-weight-light">Idealny wymiar</h3>
+             </v-col>
+             <v-col>
+<div class="s1img"><v-img src="../assets/slim.jpg"></v-img></div>
+             </v-col>
+           </v-row>
+         </v-card>
 
-  <!-- <table>
-    <th v-for="(v,k) in tableData" :key="k">
-       <tr @click="editReply(k)" v-bind:style="{ 'background-color': tableData[k].type}">
-       <td>{{v.type}}</td>
-       </tr>
-    </th>
-  </table> -->
-<div class="control-panel">
-<v-btn @click ="selected_draw = 1" class="btn" color="primary">bloczek</v-btn>
-<v-btn @click ="selected_draw = 2" class="btn" color="green">Wypełnienie</v-btn>
-<v-btn @click ="selected_draw = 3" class="btn" color="orange">Czyszczenie</v-btn>
-</div>
+         <v-parallax height="600" src="../assets/dworskalewa.jpg">
+         <v-row>
+             <v-col>
+
+             </v-col>
+             <v-col cols="6">
+<!-- <h1 class="display-4 mt-14">Wyjątkowe</h1> -->
+<h2 color="primary" class="display-1 mt-16 font-weight-light">Wyjątkowe projekty</h2>
+<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt fugit delectus, nulla soluta ducimus quae facere praesentium, illo consequatur dicta a quis, at pariatur blanditiis totam unde ex quo?</h3>
+             </v-col>
+           </v-row>
+         </v-parallax>
+
+         <!-- <v-card>
+
+           <v-row>
+             <v-col>1
+
+               dasadsasd
+
+               dasadsasda
+
+               <h1>asdasd</h1>
+             </v-col>
+             <v-col>2</v-col>
+           </v-row>
+         </v-card> -->
+
+<v-bottom-navigation height="64px" v-model="value" fixed="true">
+      <div class="iconsfooter"><v-icon color="blue" class="footericon">mdi-cash-multiple</v-icon><span class="pricetext">{{Math.round(suma_pln*1.23)}} PLN</span></div>
+  </v-bottom-navigation>
 
 
-<div class="cena" color="primary">Ilość bloczków: {{ilosc_bloczkow}}</div>
-<div class="cena" color="primary">Powierzchnia pól ogrodzeniowych: {{ilosc_paneli*0.075}} m2</div>
 
-
-     <!-- </v-card> -->
   </div>
 
 
@@ -53,13 +100,15 @@ export default {
         HorizontalScroll
     },
 
+    mounted(){
+    this.rysuj_mape()
+  },
+
 
 data: () => ({
 
 bloczek:[
-  // {id:0, nazwa:'Brak', waga:0, cena:0, szerokosc:0, wysokosc:0, glebokosc:0, style:'none' },
   {id:0, nazwa:'Kost-Bet Royal Slim 7016', waga:12, cena:45, szerokosc:60, wysokosc:12.5, glebokosc:20, cla:"royalslim" },
-  // {id:2, nazwa:'Inny bloczek', waga:12, cena:45, szerokosc:40, wysokosc:40, glebokosc:20, bg:'#0D0D0D' }
 ],
 
  tableData:[
@@ -81,11 +130,14 @@ dl_siatki:0,
 szerokosc_mapy:0,
 i:0,
 bloczek_id:0,
+suma_pln:0,
 map_visible:false,
-draw_type:0,
-selected_draw:1,
+draw_type:1,
+selected_draw:0,
 ilosc_bloczkow:0,
 ilosc_paneli:0,
+cenapalisada:800,
+palisadam2:0,
 
 rysuj_mape(){
   this.width = this.bloczek[this.bloczek_id].szerokosc*1.5;
@@ -99,8 +151,20 @@ for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) 
     }
     this.map_visible = true;
 // }
+},
+
+clear_map(){
+
+for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) ; i++){
+    this.map[i].bg="none"
+    this.map[i].cla="none"
+    this.ilosc_bloczkow=0
+    this.ilosc_paneli=0
+}
 
 },
+
+
 
 Rysuj2(index){
 
@@ -117,8 +181,6 @@ if(this.draw_type == 1 && this.selected_draw == 2 && (this.map[index].cla != 'pa
 }
 
 if(this.draw_type == 1 && this.selected_draw == 3){
-// this.map[index].cla = 'none';
-// this.ilosc_paneli -= 1;
 
 if(this.map[index].cla == 'palisada'){
   this.map[index].cla = 'none';
@@ -131,30 +193,11 @@ if(this.map[index].cla == 'royalslim')
   }
 }
 
+this.suma_pln = this.ilosc_bloczkow* 45
+
 },
 
 }),
-
-// beforeMount:{
-//   rysuj_mape(){
-//     for (let i = 1; i < (this.dl_siatki*20)+1 ; i++){
-//     this.map[i]= 0;
-//   }
-//   }
-// },
-// beforeMount(){
-
-// console.log("before");
-// // for (let i = 1; i < 5000 ; i++){
-// //     this.map[i]= 0;
-// //   }
-
-// for (let i = 0; i < 100 ; i++){
-//     this.map.push({id:'6',style:'green'});
-//     }
-// console.log(this.map);
-// },
-
 
 
 methods:{
@@ -174,12 +217,14 @@ editReply(index) {
 
 .mapa {
 // max-height: 500px;
-background-color:#260B0B;
 display:flex;
 flex-wrap: wrap;
-width:5000px;
-background-image: url(../assets/house2.jpg);
-background-size: contain;
+background-image: url(../assets/houselong.jpg);
+background-size: cover;
+}
+
+.block{
+  display:block;
 }
 
 .red{
@@ -225,12 +270,15 @@ cursor:pointer;
 
 div .control-panel{
 margin:10px;
+display:flex;
+flex-grow: 1;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .btn
 {
-margin:0px 5px;
-width:200px;
+width:140px;
 background-color:red;
 }
 

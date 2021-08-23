@@ -1,6 +1,6 @@
 <template>
 
-      <v-container 
+      <v-container
         fluid
       >
       <v-row class="headimg">
@@ -16,7 +16,7 @@
       </v-row>
 
       <v-row>
-<v-parallax class="gates" 
+<v-parallax class="gates"
 src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
 
 >
