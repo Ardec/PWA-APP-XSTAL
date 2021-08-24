@@ -21,10 +21,10 @@
                   <router-link tag="li" to="/systemy">
         <v-list-item link>
           <v-list-item-action>
-            <v-icon color="black disabled">mdi-view-array</v-icon>
+            <v-icon color="black">mdi-view-array</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title  class="font-weight-light disabled">Ogrodzenie frontowe</v-list-item-title>
+            <v-list-item-title  class="font-weight-light">Ogrodzenie frontowe</v-list-item-title>
 
           </v-list-item-content>
         </v-list-item>

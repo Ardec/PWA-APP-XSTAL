@@ -19,54 +19,6 @@
         Kamil Kaczmarczyk - 508786884<br>
         </p>
  </div>
-  <!-- <div class="contact px-8">
-    <h1>Pytania / Wycena ?</h1>
-    <p>Prosimy o wysyłanie zapytań ofertowych pod adres email biuromodernbau@gmail.com lub bezpośrednio przez poniższy formularz</p>
-   <form>
-    <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
-      :counter="10"
-      label="Imię"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
-    ></v-text-field>
-    <v-text-field
-      v-model="email"
-      :error-messages="emailErrors"
-      label="Adres e-mail"
-      required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
-    ></v-text-field>
-
-    <v-textarea
-    v-model="tresc"
-    label="Treść wiadomości"
-    >
-    </v-textarea>
-    <v-checkbox
-      v-model="checkbox"
-      :error-messages="checkboxErrors"
-      label="Zgadzam się na przetwarzanie danych i akceptuję politykę prywatności"
-      required
-      @change="$v.checkbox.$touch()"
-      @blur="$v.checkbox.$touch()"
-    ></v-checkbox>
-
-    <v-btn
-      class="mr-4"
-      color="green accent-3"
-      @click="submit"
-    >
-      Wyślij
-    </v-btn>
-    <v-btn @click="clear" color="pink accent-2">
-      Wyczyść
-    </v-btn>
-  </form> -->
-  <!-- </div> -->
    </div>
 </template>
 

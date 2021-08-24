@@ -1,6 +1,5 @@
 <template>
   <div class="systems">
-      
      <v-card class="calcsection color-gr2">
        <h3 pcolor="primary" class="display-2 mt-4 ml-4 font-weight-light">Planer Ogrodzenia KOST-BET Royal Slim</h3>
        <v-card-title class="text-center justify-center py-6">
@@ -10,7 +9,9 @@
         <v-btn @click ="selected_draw = 2" class="ma-2 btn" dark color="black"><v-icon  medium color="white">mdi-menu</v-icon>Palisada</v-btn>
         <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>
         <div class="cena" color="primary"></div>
-        <v-textarea
+        <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-help</v-icon>Pomoc</v-btn>
+         <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Resetuj</v-btn>
+          <v-textarea
           label="ILOŚĆ BLOCZKÓW ( SZT )"
           outlined
           rows="1"
@@ -26,8 +27,6 @@
           disabled
           v-model="ilosc_paneli"
         ></v-textarea>
-
-         <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Zacznij od nowa</v-btn>
 
 </div>
      </v-card>
@@ -52,30 +51,101 @@
          <v-parallax height="600" src="../assets/dworskalewa.jpg">
          <v-row>
              <v-col>
+<v-row>1</v-row>
+<v-row>2</v-row>
+<v-row>3</v-row>
 
              </v-col>
              <v-col cols="6">
 <!-- <h1 class="display-4 mt-14">Wyjątkowe</h1> -->
-<h2 color="primary" class="display-1 mt-16 font-weight-light">Wyjątkowe projekty</h2>
-<h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro incidunt fugit delectus, nulla soluta ducimus quae facere praesentium, illo consequatur dicta a quis, at pariatur blanditiis totam unde ex quo?</h3>
+<h2 color="primary" class="display-1 mt-16 font-weight-light">Ogrodzenie na lata</h2>
+<h3>Ogrodzenie murowane budujesz raz na kilkadziesiąt lat, co w porównaniu z trwałością innych ogrodzeń wychodzi najkorzystniej.</h3>
+
+             <h2 color="primary" class="display-1 mt-16 font-weight-light">Nowoczesny design</h2>
+<h3>Idealnie prosty kształt będzie zawsze nowoczesny. Budując ogrodzenie bez dodatkowych elementów deroracyjnych możesz być pewien, że nigdy nie wyjdzie z mody.</h3>
+
+             <h2 color="primary" class="display-1 mt-16 font-weight-light">Możliwość kombinacji</h2>
+<h3>Palisa stalowa, nierdzewna lub aluminiowa? a może system ogrodzeń Budmat lub SMW? Royal Slim pasuje każdy rodzaj przęseł</h3>
+
              </v-col>
            </v-row>
          </v-parallax>
+<v-expansion-panels>
 
-         <!-- <v-card>
 
+         <v-expansion-panel
+    >
+      <v-expansion-panel-header>Instrukcja montażu</v-expansion-panel-header>
+      <v-expansion-panel-content>
+         <div class="systems pa-8">
+    <h1>Regulamin montażu ogrodzeń panelowych</h1>
+    <br>
+
+<h3>Przed rozpoczęciem prac inwestor jest zobowiązany do: </h3>
+
+<ul>Udostępnienia posesji oraz mediów lub dopłaty zgodnie z cennikiem.</ul>
+
+<ul>Wyznaczenia słupków granicznych ogrodzenia na każdym załamaniu.</ul>
+<ul>Wyznaczenia umiejscowienia bramy oraz furtki. </ul>
+<ul>Wyznaczenia umiejscowienia bramy oraz furtki. </ul>
+<ul>Wysprzątania i przygotowania terenu pod budowę (koszenie itd.)</ul>
+<ul>Wykonawca buduje ogrodzenie w miejscu wskazanym przez inwestora i nie ponosi odpowiedzialności za nieprawidłowe wskazanie biegu granic.</ul>
+<ul>Ustalenia uskoków ogrodzenia</ul>
+
+<br>
+
+<h3>Wycena nie obejmuje:</h3>
+<ul>prac ziemnych</ul>
+<ul>niwelacji terenu</ul>
+<ul>koszenia</ul>
+<ul>sprzątania ( wszelkie pozostałości - kamienie, ziemia, piasek ) zostają na działce inwestora</ul>
+<ul>transportu materiałów dodatkowych</ul>
+<ul>wykonania instalacji elektrycznych</ul>
+<ul>rozbiórki, układania kostki brukowej oraz modyfikacji innej infrastruktury</ul>
+<ul>demontażu</ul>
+<ul>wycinania paneli w miejscach skrzynek, przyłączeń lub przeszkód</ul>
+<ul>prowadzenia instalacji elektrycznej do bramy przesuwnej</ul>
+<ul>betonu powyżej poziomu gruntu ( podnoszenia ogrodzenia )</ul>
+<ul>montażu elementów z powierzonego materiału.</ul>
+<ul>Materiału dodatkowego, np. dłuższych słupków, wymiany lub dodatkowych podmurówek,</ul>
+<ul>Montażu i materiału na słupy krańcowe ogrodzenia panelowego. Pole panelowe składa się z zawsze z jednego słupka i jednego pola, a każde następne jest dołączone do poprzednich.</ul>
+
+<br>
+
+<h4>Uzupełnianie ziemi na różnicach wysokości leży po stronie inwestora.</h4>
+<h4>Pola docinane liczą się jako pełne ( 2.6mb x cena za mb )</h4>
+<h4>Termin realizacji może ulec zmianę z uwagi na czynniki zewnętrzne.</h4>
+
+<br>
+
+<p>Wizja w terenie jest płatna 300 zł i zostaje odliczona od końcowej kwoty należności za ogrodzenie. <br>
+Po wpłacie zadatku dokonywany jest pomiar na miejscu budowy.W przypadku ostatecznej decyzji podjęcia współpracy, pomiar jest bezpłatny.Wpłata zadatku jest równocześnie rezerwacją ceny materiału.</p>
+
+<p>Zmiany w ofercie są płatne 50 zł / zmiana, muszą zostać zaakceptowane przez obie strony i zgłoszone minimum 24 godziny wcześniej, tak aby nie opóźniały prac.</p>
+
+<p>Oferta cenowa jest ważna przez 14 dni od dnia w którym została do Pani/Pana przekazana.Cena może ulec zmianie jeśli występuje różnica pomiędzy pomiarem a podanymi przez Pana/Panią danymi.</p>
+
+<p>Prosimy o ustalanie prac nie uwzględnionych w ofercie jedynie poprzez biuro.
+Prace dodatkowe, nie uwzględnione w umowie są wycenione na 50zł/ netto za godzinę pracy każdego pracownika przebywającego na budowie.</p>
+
+  </div>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+      
+</v-expansion-panels>
+
+    <v-card>
            <v-row>
-             <v-col>1
-
-               dasadsasd
-
-               dasadsasda
-
-               <h1>asdasd</h1>
+             <v-col>
+<h1 class="display-4 ml-10 mt-14">Fundamenty</h1>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie / Systemowo</h3>
+<h3 class="ml-10 mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem soluta necessitatibus cum unde odit culpa mollitia quia? Eveniet sequi quod veniam iure delectus quo assumenda dolorem nihil atque temporibus. Necessitatibus!</h3>
              </v-col>
-             <v-col>2</v-col>
+             <v-col>
+<div class="s1img"><v-img src="../assets/lupany16-schemat.jpg"></v-img></div>
+             </v-col>
            </v-row>
-         </v-card> -->
+         </v-card>
 
 <v-bottom-navigation height="64px" v-model="value" fixed="true">
       <div class="iconsfooter"><v-icon color="blue" class="footericon">mdi-cash-multiple</v-icon><span class="pricetext">{{Math.round(suma_pln*1.23)}} PLN</span></div>
@@ -234,7 +304,6 @@ background-size: cover;
 .palisada
 {
 background-image: url(../assets/palisada.png);
-border:none;
 }
 
 .active{
@@ -253,6 +322,7 @@ border:none;
 .royalslim
 {
   background-color: #383e42;
+  border:rgb(53, 53, 53) 1px solid;
 }
 
 .frame
