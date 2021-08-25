@@ -7,8 +7,7 @@
         <div class="control-panel">
         <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-shape-rectangle-plus</v-icon>Bloczek</v-btn>
         <v-btn @click ="selected_draw = 2" class="ma-2 btn" dark color="black"><v-icon  medium color="white">mdi-menu</v-icon>Palisada</v-btn>
-        <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>
-        <div class="cena" color="primary"></div>
+        <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>  
         <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-help</v-icon>Pomoc</v-btn>
          <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Resetuj</v-btn>
           <v-textarea
@@ -32,7 +31,7 @@
      </v-card>
           <horizontal-scroll>
           <div @mouseleave="draw_type = 0" v-bind:style="{width:szerokosc_mapy + 'px'}" class="mapa">
-          <div @mousedown="draw_type = 1, Rysuj2(n)" @mouseover="Rysuj2(n)" @mouseup="draw_type = 0" :style="{height:height +'px' ,width:width + 'px'}" v-for="(v,n) in map" :key="n" :class='map[n].cla' class = "frame unselectable" ></div>
+          <div @mousedown="draw_type = 1, Rysuj2(n)" @mouseover="Rysuj2(n)" @mouseup="draw_type = 0" :style="{height:height +'px' ,width:width + 'px'}" v-for="(v,n) in map" :key="n" :class='map[n].cla' class = "frame unselectable" ><span class="legend" v-if="n<44 && n>0">{{n*60}}</span><span class="legend" v-if="n>43 && n%44==0">{{(1012-n)/44*12.5}}</span><span class="legend" v-if="n==0">{{"Centymetry"}}</span></div>
           </div>
          </horizontal-scroll>
 
@@ -51,9 +50,15 @@
          <v-parallax height="600" src="../assets/dworskalewa.jpg">
          <v-row>
              <v-col>
-<v-row>1</v-row>
-<v-row>2</v-row>
-<v-row>3</v-row>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Do wyboru do koloru:</h3>
+<div class="colors">
+<div class="color">1</div>
+<div class="color">1</div>
+<div class="color">1</div>
+<div class="color">1</div>
+<div class="color">1</div>
+<div class="color">1</div>
+</div>
 
              </v-col>
              <v-col cols="6">
@@ -78,72 +83,82 @@
       <v-expansion-panel-header>Instrukcja montażu</v-expansion-panel-header>
       <v-expansion-panel-content>
          <div class="systems pa-8">
-    <h1>Regulamin montażu ogrodzeń panelowych</h1>
-    <br>
+    <h1>Instrukcja montażu</h1>
+    <h3>1.</h3>
 
-<h3>Przed rozpoczęciem prac inwestor jest zobowiązany do: </h3>
+<p>Prace rozpoczynamy od wykonania fundamentu pod ogrodzenie. Wykop fundamentowy
+wykonujemy na głębokość poniżej strefy przemarzania (90cm-150cm), biorąc pod uwagę
+rozmieszczenie słupków. Ławy fundamentowe zbroimy poziomo drutem żebrowanym 4 *fi 12
+strzemiona wykonujemy z drutu fi 6, stosujemy również zbrojenie pionowe pod rozmieszczone
+słupki 4*fi12. Przygotowanyi zazbrojonywykop zalewamy betonem klasy C20/25. Ewntualne
+niewielkie ubytki i nierówności powstałe w płaszczyźnie fundamentu uzupełniamy zaprawą
+wyrównującą. Na tak przygotowaną ławę fundamentową rozkładamy folię izolacji poziomej
+chroniącą przed przesiąkaniem wilgoci z gruntu.</p>
+<h3>2.</h3>
+<p>Przed rozpoczęciem montażu elementy murowe powinny zostać oczyszczone z luźnych
+pozostałości produkcyjnych. Montaż ogrodzenia łupanego w zestawie S38+P22
+rozpoczynamy od elementów słupkowych typu„S",a następnie powstałą przestrzeń między
+nimi wypełniamy elementami typu„P". Montaż ogrodzenia łupanego w zestawie S22+P22 oraz
+S38+P38 rozpoczynamy od elementów podmurówkowych, a następnie montujemy na nich
+elelmenty słupkowe. Do łączenia pustaków łupanych typu „P" i „S" używamy specjalistycznych
+mrozoodpornych zapraw klejowych lub klejo-uszczelniaczy. Ważne aby łączenie
+montowanych ze sobą elementów było wykonane ze szczególną starannością i dokładnością
+uniemożliwiając w późniejszym czasie wypłynięcie betonu, a co za tym idzie zacieku lub
+wykwitu na wierzchniej warstwie ogrodzenia. Na tym etapie montujemy również zawiasy do
+furtek i bram oraz mocowania do przęseł. Do poziomowania i niwelacji powstałych odchyleń
+możemy używać klinikow glazurniczych. Wymurowane elementy zalewamy oraz zagęszczamy
+mieszanką betonową wodoszczelną klasy C30/37 na bazie piasków i żwirów płukanych oraz
+cementu klasy CM i bez dodatków popiołowych. W razie wypłynięcia mieszanki betonowej na
+lico ogrodzenia należy niewłocznie usunąć zabrudzenie spłukającje obficie wodą. Ważne aby
+przed zamontowaniem daszków po każdym zakończonym dniu pracy zabezpieczyć słupki oraz
+podmurówkę przed działaniem warunków atmosferycznych.</p>
+<h3>3.</h3>
 
-<ul>Udostępnienia posesji oraz mediów lub dopłaty zgodnie z cennikiem.</ul>
+<p>Po wymurowaniu słupków i podmurówek oraz zalaniu ich betonem możemy przystąpić do
+montażu daszków. Daszki kleimy używając zaprawy klejowej, a połączenie między daszkami
+i między daszkami a pustakami uszczelniamy silikonem.</p>
 
-<ul>Wyznaczenia słupków granicznych ogrodzenia na każdym załamaniu.</ul>
-<ul>Wyznaczenia umiejscowienia bramy oraz furtki. </ul>
-<ul>Wyznaczenia umiejscowienia bramy oraz furtki. </ul>
-<ul>Wysprzątania i przygotowania terenu pod budowę (koszenie itd.)</ul>
-<ul>Wykonawca buduje ogrodzenie w miejscu wskazanym przez inwestora i nie ponosi odpowiedzialności za nieprawidłowe wskazanie biegu granic.</ul>
-<ul>Ustalenia uskoków ogrodzenia</ul>
-
-<br>
-
-<h3>Wycena nie obejmuje:</h3>
-<ul>prac ziemnych</ul>
-<ul>niwelacji terenu</ul>
-<ul>koszenia</ul>
-<ul>sprzątania ( wszelkie pozostałości - kamienie, ziemia, piasek ) zostają na działce inwestora</ul>
-<ul>transportu materiałów dodatkowych</ul>
-<ul>wykonania instalacji elektrycznych</ul>
-<ul>rozbiórki, układania kostki brukowej oraz modyfikacji innej infrastruktury</ul>
-<ul>demontażu</ul>
-<ul>wycinania paneli w miejscach skrzynek, przyłączeń lub przeszkód</ul>
-<ul>prowadzenia instalacji elektrycznej do bramy przesuwnej</ul>
-<ul>betonu powyżej poziomu gruntu ( podnoszenia ogrodzenia )</ul>
-<ul>montażu elementów z powierzonego materiału.</ul>
-<ul>Materiału dodatkowego, np. dłuższych słupków, wymiany lub dodatkowych podmurówek,</ul>
-<ul>Montażu i materiału na słupy krańcowe ogrodzenia panelowego. Pole panelowe składa się z zawsze z jednego słupka i jednego pola, a każde następne jest dołączone do poprzednich.</ul>
-
-<br>
-
-<h4>Uzupełnianie ziemi na różnicach wysokości leży po stronie inwestora.</h4>
-<h4>Pola docinane liczą się jako pełne ( 2.6mb x cena za mb )</h4>
-<h4>Termin realizacji może ulec zmianę z uwagi na czynniki zewnętrzne.</h4>
-
-<br>
-
-<p>Wizja w terenie jest płatna 300 zł i zostaje odliczona od końcowej kwoty należności za ogrodzenie. <br>
-Po wpłacie zadatku dokonywany jest pomiar na miejscu budowy.W przypadku ostatecznej decyzji podjęcia współpracy, pomiar jest bezpłatny.Wpłata zadatku jest równocześnie rezerwacją ceny materiału.</p>
-
-<p>Zmiany w ofercie są płatne 50 zł / zmiana, muszą zostać zaakceptowane przez obie strony i zgłoszone minimum 24 godziny wcześniej, tak aby nie opóźniały prac.</p>
-
-<p>Oferta cenowa jest ważna przez 14 dni od dnia w którym została do Pani/Pana przekazana.Cena może ulec zmianie jeśli występuje różnica pomiędzy pomiarem a podanymi przez Pana/Panią danymi.</p>
-
-<p>Prosimy o ustalanie prac nie uwzględnionych w ofercie jedynie poprzez biuro.
-Prace dodatkowe, nie uwzględnione w umowie są wycenione na 50zł/ netto za godzinę pracy każdego pracownika przebywającego na budowie.</p>
+<h3>4.</h3>
+<p>Po zakończeniu okresu dojrzewania betonu zalecamy impregnację całego ogrodzenia,
+a następnie montaż bram, furtek oraz przęseł.</p>
 
   </div>
       </v-expansion-panel-content>
     </v-expansion-panel>
-      
+
 </v-expansion-panels>
 
     <v-card>
            <v-row>
              <v-col>
 <h1 class="display-4 ml-10 mt-14">Fundamenty</h1>
-<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie / Systemowo</h3>
-<h3 class="ml-10 mt-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem soluta necessitatibus cum unde odit culpa mollitia quia? Eveniet sequi quod veniam iure delectus quo assumenda dolorem nihil atque temporibus. Necessitatibus!</h3>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Systemowo</h3>
+<h3 class="ml-10 mt-6">Możesz wykopać oraz odlać fundamenty tradycyjnie do strefy przemarzania bądź skorzystać z nowoczesnego systemu. Szczegóły znajdziesz w instrukcji montażu.</h3>
+
+             <v-img class="mt-6" contain height="400" src="../assets/fundamenty.jpg"></v-img>
+             <h3 class="ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
+             <h3 class="ml-10 mt-6">Długość ogrodzenia:</h3>
+             <h3 class="ml-10 mt-6">Ilość słupów:</h3>
+             <h3 class="ml-10 mt-6">Ilość belek:</h3>
+             <h3 class="ml-10 mt-6">Szacunkowy koszt:</h3>
              </v-col>
              <v-col>
 <div class="s1img"><v-img src="../assets/lupany16-schemat.jpg"></v-img></div>
              </v-col>
+           </v-row>
+           <v-row>
+<v-col>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie </h3>
+<h3 class="ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj wymiary aby obliczyć ilość potrzebnego betonu.Tradycyjny fundament zakłada 30cm x 80 cm x długość</h3>
+<h3 class="ml-10 mt-6">Długość ogrodzenia</h3>
+<h3 class="ml-10 mt-6">Szerokość</h3>
+<h3 class="ml-10 mt-6">Głębokośc (poniżej strefy przemarzania)</h3>
+<h3 class="ml-10 mt-6">Cena betonu za m2</h3>
+<h3 class="ml-10 mt-6">Szacunkowy koszt:</h3>
+
+</v-col>
+<v-col><v-img class="mt-6" contain height="400" src="../assets/cos.jpg"></v-img></v-col>
+
            </v-row>
          </v-card>
 
@@ -208,6 +223,8 @@ ilosc_bloczkow:0,
 ilosc_paneli:0,
 cenapalisada:800,
 palisadam2:0,
+legend:true,
+lop:0.5,
 
 rysuj_mape(){
   this.width = this.bloczek[this.bloczek_id].szerokosc*1.5;
@@ -232,6 +249,14 @@ for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) 
     this.ilosc_paneli=0
 }
 
+},
+
+legenda(){
+this.legend = !this.legend
+if(this.legend == true) {this.lop = 1}else {this.lop = 0.5}
+// for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) ; i+44){
+this.map[0].cla = 'legend'
+    // }
 },
 
 
@@ -278,8 +303,9 @@ editReply(index) {
       this.tableData[index].type = "black";
       }
     }
+},
 
-}
+
 }
 </script>
 
@@ -325,10 +351,20 @@ background-image: url(../assets/palisada.png);
   border:rgb(53, 53, 53) 1px solid;
 }
 
-.frame
+.legend
 {
-// border: 1px dotted rgba(0, 0, 0, .2);
-// padding:1px;
+display:block;
+text-align: center;
+justify-content: center;
+vertical-align: top;
+margin:0,auto;
+}
+
+.frame{
+  display:flex;
+  align-items: left;
+  justify-content: left;
+  font-size: 15px;
 }
 
 .frame:hover{
