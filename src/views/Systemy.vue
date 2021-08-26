@@ -1,31 +1,23 @@
 <template>
   <div class="systems">
-     <v-card class="calcsection color-gr2">
-       <h3 pcolor="primary" class="display-2 mt-4 ml-4 font-weight-light">Planer Ogrodzenia KOST-BET Royal Slim</h3>
-       <v-card-title class="text-center justify-center py-6">
-    </v-card-title>
+
+
+    <v-card>
+      <v-img class="herotopimg" height="600" src="../assets/titleimgparallax.jpg"><span class="herotop mt-14">ZAPLANUJ SWOJE OGRODZENIE</span>
+      <v-img height="80" class="mt-10" contain src="../assets/kostbetwhite.png"></v-img>
+      </v-img>
+
+    </v-card>
+     <v-card class="">
         <div class="control-panel">
         <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-shape-rectangle-plus</v-icon>Bloczek</v-btn>
         <v-btn @click ="selected_draw = 2" class="ma-2 btn" dark color="black"><v-icon  medium color="white">mdi-menu</v-icon>Palisada</v-btn>
-        <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>  
+        <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>
         <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-help</v-icon>Pomoc</v-btn>
          <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Resetuj</v-btn>
-          <v-textarea
-          label="ILOŚĆ BLOCZKÓW ( SZT )"
-          outlined
-          rows="1"
-          disabled
-          v-model="ilosc_bloczkow"
-        >
-        </v-textarea>
-
-        <v-textarea
-          label="POWIERZCHNIA PALISADY ( M2 )"
-          outlined
-          rows="1"
-          disabled
-          v-model="ilosc_paneli"
-        ></v-textarea>
+        <div class="top_panel_data"><h4>ilość bloczków {{ilosc_bloczkow-fund}} szt </h4> </div>
+        <div class="top_panel_data"><h4>ilość daszków {{fund}} szt </h4> </div>
+        <div class="top_panel_data"><h4>Powierzchnia palisady {{Math.round(ilosc_paneli*0.6*0.125*100)/100}} m2</h4> </div>
 
 </div>
      </v-card>
@@ -39,7 +31,7 @@
            <v-row>
              <v-col>
 <h1 class="display-4 ml-10 mt-4">Royal Slim</h1>
-<h3 pcolor="primary" class="display-2 ml-10 mt-4 font-weight-light">Idealny wymiar</h3>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Idealny wymiar</h3>
              </v-col>
              <v-col>
 <div class="s1img"><v-img src="../assets/slim.jpg"></v-img></div>
@@ -50,15 +42,8 @@
          <v-parallax height="600" src="../assets/dworskalewa.jpg">
          <v-row>
              <v-col>
-<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Do wyboru do koloru:</h3>
-<div class="colors">
-<div class="color">1</div>
-<div class="color">1</div>
-<div class="color">1</div>
-<div class="color">1</div>
-<div class="color">1</div>
-<div class="color">1</div>
-</div>
+<h3 color="primary" class="display-2 ml-10 mt-14 font-weight-light">Do wyboru do koloru</h3>
+<v-img height="350px" class="ml-10 mt-10" width="500px" contain src="../assets/slimcolor.png"></v-img>
 
              </v-col>
              <v-col cols="6">
@@ -80,13 +65,15 @@
 
          <v-expansion-panel
     >
-      <v-expansion-panel-header>Instrukcja montażu</v-expansion-panel-header>
+      <v-expansion-panel-header>Instrukcja montażu producenta</v-expansion-panel-header>
       <v-expansion-panel-content>
          <div class="systems pa-8">
-    <h1>Instrukcja montażu</h1>
-    <h3>1.</h3>
 
-<p>Prace rozpoczynamy od wykonania fundamentu pod ogrodzenie. Wykop fundamentowy
+    <h1>Montaż ogrodzenia z bloczków Royal</h1>
+
+    <br>
+
+<p>1.Prace rozpoczynamy od wykonania fundamentu pod ogrodzenie. Wykop fundamentowy
 wykonujemy na głębokość poniżej strefy przemarzania (90cm-150cm), biorąc pod uwagę
 rozmieszczenie słupków. Ławy fundamentowe zbroimy poziomo drutem żebrowanym 4 *fi 12
 strzemiona wykonujemy z drutu fi 6, stosujemy również zbrojenie pionowe pod rozmieszczone
@@ -94,8 +81,7 @@ słupki 4*fi12. Przygotowanyi zazbrojonywykop zalewamy betonem klasy C20/25. Ewn
 niewielkie ubytki i nierówności powstałe w płaszczyźnie fundamentu uzupełniamy zaprawą
 wyrównującą. Na tak przygotowaną ławę fundamentową rozkładamy folię izolacji poziomej
 chroniącą przed przesiąkaniem wilgoci z gruntu.</p>
-<h3>2.</h3>
-<p>Przed rozpoczęciem montażu elementy murowe powinny zostać oczyszczone z luźnych
+<p>2.Przed rozpoczęciem montażu elementy murowe powinny zostać oczyszczone z luźnych
 pozostałości produkcyjnych. Montaż ogrodzenia łupanego w zestawie S38+P22
 rozpoczynamy od elementów słupkowych typu„S",a następnie powstałą przestrzeń między
 nimi wypełniamy elementami typu„P". Montaż ogrodzenia łupanego w zestawie S22+P22 oraz
@@ -112,16 +98,11 @@ cementu klasy CM i bez dodatków popiołowych. W razie wypłynięcia mieszanki b
 lico ogrodzenia należy niewłocznie usunąć zabrudzenie spłukającje obficie wodą. Ważne aby
 przed zamontowaniem daszków po każdym zakończonym dniu pracy zabezpieczyć słupki oraz
 podmurówkę przed działaniem warunków atmosferycznych.</p>
-<h3>3.</h3>
-
-<p>Po wymurowaniu słupków i podmurówek oraz zalaniu ich betonem możemy przystąpić do
+<p>3.Po wymurowaniu słupków i podmurówek oraz zalaniu ich betonem możemy przystąpić do
 montażu daszków. Daszki kleimy używając zaprawy klejowej, a połączenie między daszkami
 i między daszkami a pustakami uszczelniamy silikonem.</p>
-
-<h3>4.</h3>
-<p>Po zakończeniu okresu dojrzewania betonu zalecamy impregnację całego ogrodzenia,
+<p>4.Po zakończeniu okresu dojrzewania betonu zalecamy impregnację całego ogrodzenia,
 a następnie montaż bram, furtek oraz przęseł.</p>
-
   </div>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -136,11 +117,11 @@ a następnie montaż bram, furtek oraz przęseł.</p>
 <h3 class="ml-10 mt-6">Możesz wykopać oraz odlać fundamenty tradycyjnie do strefy przemarzania bądź skorzystać z nowoczesnego systemu. Szczegóły znajdziesz w instrukcji montażu.</h3>
 
              <v-img class="mt-6" contain height="400" src="../assets/fundamenty.jpg"></v-img>
-             <h3 class="ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
-             <h3 class="ml-10 mt-6">Długość ogrodzenia:</h3>
-             <h3 class="ml-10 mt-6">Ilość słupów:</h3>
-             <h3 class="ml-10 mt-6">Ilość belek:</h3>
-             <h3 class="ml-10 mt-6">Szacunkowy koszt:</h3>
+             <h3 class="font-weight-light ml-10 mt-6">W Zaplanowanym ogrodzeniu fundamenty mają długość {{fund*0.6}} mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
+             <h3 class="font-weight-light ml-10 mt-6">Długość fundamentów: {{fund*0.6}} m</h3>
+             <h3 class="font-weight-light ml-10 mt-6">Ilość słupów powyżej 35cm: {{klocki}} Ilość podstaw {{klocki*2}}</h3>
+             <h3 class="font-weight-light ml-10 mt-6">Ilość belek: {{Math.round((fund*0.6/2.2)+0.5)}}szt x 220cm</h3>
+             <h3 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h3>
              </v-col>
              <v-col>
 <div class="s1img"><v-img src="../assets/lupany16-schemat.jpg"></v-img></div>
@@ -149,16 +130,28 @@ a następnie montaż bram, furtek oraz przęseł.</p>
            <v-row>
 <v-col>
 <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie </h3>
-<h3 class="ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj wymiary aby obliczyć ilość potrzebnego betonu.Tradycyjny fundament zakłada 30cm x 80 cm x długość</h3>
-<h3 class="ml-10 mt-6">Długość ogrodzenia</h3>
-<h3 class="ml-10 mt-6">Szerokość</h3>
-<h3 class="ml-10 mt-6">Głębokośc (poniżej strefy przemarzania)</h3>
-<h3 class="ml-10 mt-6">Cena betonu za m2</h3>
-<h3 class="ml-10 mt-6">Szacunkowy koszt:</h3>
+<h4 class="font-weight-light ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj wymiary aby obliczyć ilość potrzebnego betonu.Tradycyjny fundament zakłada 30cm x 80 cm x długość</h4>
+<h4 class="font-weight-light ml-10 mt-6">Długość fundamentów {{fund*0.6}} m</h4>
+<h4 class="font-weight-light ml-10 mt-6">Szerokość 0.3m</h4>
+<h4 class="font-weight-light ml-10 mt-6">Głębokośc (poniżej strefy przemarzania) 0.8m</h4>
+<h4 class="font-weight-light ml-10 mt-6">Cena betonu za m2</h4>
+<h4 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h4>
 
 </v-col>
 <v-col><v-img class="mt-6" contain height="400" src="../assets/cos.jpg"></v-img></v-col>
 
+           </v-row>
+         </v-card>
+
+         <v-card>
+           <v-row>
+             <v-col>
+<h1 class="display-4 ml-10 mt-4">Palisada</h1>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Wypełnienie na wiele sposobów</h3>
+             </v-col>
+             <v-col>
+<div class="s1img"><v-img height="300" width="500" src="../assets/palis.png"></v-img></div>
+             </v-col>
            </v-row>
          </v-card>
 
@@ -225,6 +218,8 @@ cenapalisada:800,
 palisadam2:0,
 legend:true,
 lop:0.5,
+fund:0,
+klocki:0,
 
 rysuj_mape(){
   this.width = this.bloczek[this.bloczek_id].szerokosc*1.5;
@@ -245,10 +240,12 @@ clear_map(){
 for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) ; i++){
     this.map[i].bg="none"
     this.map[i].cla="none"
-    this.ilosc_bloczkow=0
-    this.ilosc_paneli=0
 }
-
+this.ilosc_bloczkow=0
+this.ilosc_paneli=0
+this.ilosc_bloczkow_fund=0
+this.fund=0
+this.ilosc_paneli=0
 },
 
 legenda(){
@@ -257,6 +254,21 @@ if(this.legend == true) {this.lop = 1}else {this.lop = 0.5}
 // for (let i = 1; i < this.dl_siatki*(400/this.bloczek[this.bloczek_id].wysokosc) ; i+44){
 this.map[0].cla = 'legend'
     // }
+},
+
+fundamenty(){
+this.fund = 0
+for(let i = 1012; i<1055; i++ ){
+    if(this.map[i].cla == this.bloczek[this.bloczek_id].cla){this.fund += 1}
+  }
+
+},
+
+policz_klocki(){
+this.klocki = 0
+for(let i = 880; i<923; i++ ){
+    if(this.map[i].cla == this.bloczek[this.bloczek_id].cla){this.klocki += 1}
+  }
 },
 
 
@@ -289,6 +301,8 @@ if(this.map[index].cla == 'royalslim')
 }
 
 this.suma_pln = this.ilosc_bloczkow* 45
+this.fundamenty()
+this.policz_klocki()
 
 },
 
@@ -331,6 +345,16 @@ background-size: cover;
 {
 background-image: url(../assets/palisada.png);
 }
+
+.top_panel_data
+{
+min-width:200px;
+height: 50px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
 
 .active{
   background-color:red;
@@ -375,17 +399,36 @@ cursor:pointer;
 }
 
 div .control-panel{
-margin:10px;
 display:flex;
 flex-grow: 1;
 flex-wrap: wrap;
-justify-content: center;
+justify-content: left;
+margin-right:10px;
 }
 
 .btn
 {
 width:140px;
 background-color:red;
+}
+
+.herotopimg{
+min-width:200px;
+display:flex;
+align-items: center;
+justify-content: center;
+}
+
+.herotop
+{
+  color:white;
+  display:block;
+  line-height:3.5rem;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-left:5%;
+  letter-spacing: 0.25rem;
+  text-align: center;
 }
 
 div .calcsection{
