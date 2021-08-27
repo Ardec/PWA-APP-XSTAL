@@ -110,26 +110,34 @@ a następnie montaż bram, furtek oraz przęseł.</p>
 </v-expansion-panels>
 
     <v-card>
+      <v-row>
+        <v-col>
+<h1 class="center display-4 ml-10 mt-14 mb-6">Fundamenty</h1>
+        </v-col>
+      </v-row>
            <v-row>
              <v-col>
-<h1 class="display-4 ml-10 mt-14">Fundamenty</h1>
-<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Systemowo</h3>
-<h3 class="ml-10 mt-6">Możesz wykopać oraz odlać fundamenty tradycyjnie do strefy przemarzania bądź skorzystać z nowoczesnego systemu. Szczegóły znajdziesz w instrukcji montażu.</h3>
 
-             <v-img class="mt-6" contain height="400" src="../assets/fundamenty.jpg"></v-img>
-             <h3 class="font-weight-light ml-10 mt-6">W Zaplanowanym ogrodzeniu fundamenty mają długość {{fund*0.6}} mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Systemowo</h3>
+<h3 class="ml-10 mt-6 font-weight-light">Możesz wykopać oraz odlać fundamenty tradycyjnie do strefy przemarzania bądź skorzystać z nowoczesnego systemu. Szczegóły znajdziesz w instrukcji montażu.</h3>
+
+             </v-col>
+             <v-col>
+<div class="s1img mt-10 mb-10"><v-img height="400" contain src="../assets/lupany16-schemat.jpg"></v-img></div>
+             </v-col>
+           </v-row>
+
+           <v-row>
+             <v-col><h3 class="font-weight-light ml-10 mt-6">W Zaplanowanym ogrodzeniu fundamenty mają długość {{fund*0.6}} mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
              <h3 class="font-weight-light ml-10 mt-6">Długość fundamentów: {{fund*0.6}} m</h3>
              <h3 class="font-weight-light ml-10 mt-6">Ilość słupów powyżej 35cm: {{klocki}} Ilość podstaw {{klocki*2}}</h3>
              <h3 class="font-weight-light ml-10 mt-6">Ilość belek: {{Math.round((fund*0.6/2.2)+0.5)}}szt x 220cm</h3>
-             <h3 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h3>
-             </v-col>
-             <v-col>
-<div class="s1img"><v-img src="../assets/lupany16-schemat.jpg"></v-img></div>
-             </v-col>
+             <h3 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h3></v-col>
+             <v-col><v-img class="mt-6" contain height="400" src="../assets/fundamenty.jpg"></v-img></v-col>
            </v-row>
            <v-row>
 <v-col>
-<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie </h3>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie</h3>
 <h4 class="font-weight-light ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj wymiary aby obliczyć ilość potrzebnego betonu.Tradycyjny fundament zakłada 30cm x 80 cm x długość</h4>
 <h4 class="font-weight-light ml-10 mt-6">Długość fundamentów {{fund*0.6}} m</h4>
 <h4 class="font-weight-light ml-10 mt-6">Szerokość 0.3m</h4>
@@ -144,20 +152,21 @@ a następnie montaż bram, furtek oraz przęseł.</p>
          </v-card>
 
          <v-card>
+           <v-row><v-col><h1 class="center display-4 ml-10 mt-4">Panele ogrodzeniowe</h1></v-col></v-row>
            <v-row>
-             <v-col>
-<h1 class="display-4 ml-10 mt-4">Palisada</h1>
-<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Wypełnienie na wiele sposobów</h3>
+                 <v-col>
+<div class="s1img"><v-img class="ml-14" height="200" width="500" src="../assets/palis.png"></v-img></div>
              </v-col>
              <v-col>
-<div class="s1img"><v-img height="300" width="500" src="../assets/palis.png"></v-img></div>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Wypełnienie na wiele sposobów</h3>
+<v-btn outlined right color="primary" class="ml-10 mt-10 pa-6">Przejdź do kreatora przęseł</v-btn>
              </v-col>
            </v-row>
          </v-card>
 
 <v-bottom-navigation height="64px" v-model="value" fixed="true">
       <div class="iconsfooter"><v-icon color="blue" class="footericon">mdi-cash-multiple</v-icon><span class="pricetext">{{Math.round(suma_pln*1.23)}} PLN</span></div>
-  </v-bottom-navigation>
+</v-bottom-navigation>
 
 
 
