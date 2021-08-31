@@ -3,7 +3,7 @@
 
 
     <v-card>
-      <v-img class="herotopimg" height="600" src="../assets/titleimgparallax.jpg"><span class="herotop mt-14">ZAPLANUJ SWOJE OGRODZENIE</span>
+      <v-img class="herotopimg" height="600" src="../assets/titleimgparallax.jpg"><span class="herotop mt-14">ZAPLANUJ SWOJE OGRODZENIE GITTEST</span>
       <v-img height="80" class="mt-10" contain src="../assets/kostbetwhite.png"></v-img>
       </v-img>
 
