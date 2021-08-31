@@ -44,10 +44,11 @@
              <v-col>
 <h3 color="primary" class="display-2 ml-10 mt-14 font-weight-light">Do wyboru do koloru</h3>
 <v-img height="350px" class="ml-10 mt-10" width="500px" contain src="../assets/slimcolor.png"></v-img>
+    <v-select dark class="ml-10" :items="kolor" v-model="kolor_nazwa" label="Kolorystyka" outlined></v-select>
+
 
              </v-col>
              <v-col cols="6">
-<!-- <h1 class="display-4 mt-14">Wyjątkowe</h1> -->
 <h2 color="primary" class="display-1 mt-16 font-weight-light">Ogrodzenie na lata</h2>
 <h3>Ogrodzenie murowane budujesz raz na kilkadziesiąt lat, co w porównaniu z trwałością innych ogrodzeń wychodzi najkorzystniej.</h3>
 
@@ -65,7 +66,7 @@
 
          <v-expansion-panel
     >
-      <v-expansion-panel-header>Instrukcja montażu producenta</v-expansion-panel-header>
+      <v-expansion-panel-header><h1 class="font-weight-light">Instrukcja montazu producenta</h1></v-expansion-panel-header>
       <v-expansion-panel-content>
          <div class="systems pa-8">
 
@@ -116,50 +117,140 @@ a następnie montaż bram, furtek oraz przęseł.</p>
         </v-col>
       </v-row>
            <v-row>
-             <v-col>
+             <v-col cols="6">
 
 <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Systemowo</h3>
-<h3 class="ml-10 mt-6 font-weight-light">Możesz wykopać oraz odlać fundamenty tradycyjnie do strefy przemarzania bądź skorzystać z nowoczesnego systemu. Szczegóły znajdziesz w instrukcji montażu.</h3>
+<h3 class="ml-10 mt-6 font-weight-light">Poznaj nowoczesny system fundamentowy. <br> Rozstawiaj bloczki fundamentowe maksymalnie co 260 cm od ich krawędzi. Jeśli potrzebujesz pomocy w ustaleniu ilości - zapraszamy do naszego punktu sprzedazy w Trzebini przy ul. Długiej 51.</h3>
+<h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light"><v-icon color="black" large>mdi-phone</v-icon>730 310 010</h3>
 
              </v-col>
-             <v-col>
-<div class="s1img mt-10 mb-10"><v-img height="400" contain src="../assets/lupany16-schemat.jpg"></v-img></div>
+
+             <v-col cols="6">
+
+
+<div class="mt-10 mb-10"><v-img height="400" contain src="../assets/lupany16-schemat2.png"></v-img></div>
              </v-col>
+
            </v-row>
 
            <v-row>
-             <v-col><h3 class="font-weight-light ml-10 mt-6">W Zaplanowanym ogrodzeniu fundamenty mają długość {{fund*0.6}} mb. Podaj ilość słupów składających się z minimum 4 bloczków jeden na drugim</h3>
-             <h3 class="font-weight-light ml-10 mt-6">Długość fundamentów: {{fund*0.6}} m</h3>
+
+           </v-row>
+
+           <v-row>
+
+             <v-col cols="5">
+        <v-subheader class="ml-10">Fundamenty ogrodzenia mają długość {{Math.round(fund*0.6*100)/100}} mb</v-subheader>
+      </v-col>
+      <v-col cols="5">
+        <v-text-field
+          label="Podaj długość ogrodzenia"
+          value="0"
+          prefix="(mb)"
+        ></v-text-field>
+      </v-col>
+           </v-row>
+           <v-row>
+        <v-col cols="5"><v-subheader class="ml-10">W Zaplanowanym ogrodzeniu występuje {{klocki}} słupów składających się z minimum 4 bloczków jeden na drugim (40cm+) do których należy zamówić {{klocki*2}} bloczków fundamentowych </v-subheader>
+      </v-col>
+        <v-col cols="5"><v-text-field
+          label="Ilość bloczków fundamentowych"
+          value="0"
+          prefix="(szt)"
+        ></v-text-field></v-col>
+      </v-row>
+
+               <v-row>
+        <v-col cols="5"><v-subheader class="ml-10">Aby połączyć pola zbudowane z 5 bloczków tj. 300cm (przęsło 180cm) potrzebujesz {{klocki}} belki o długości 220cm </v-subheader>
+      </v-col>
+        <v-col cols="5"><v-text-field
+          label="Ilość belek 220cm"
+          value="0"
+          prefix="(szt)"
+        ></v-text-field></v-col>
+      </v-row>
+
+         <v-row>
+        <v-col cols="5"><v-subheader class="ml-10">Aby połączyć pola zbudowane z 6 bloczków tj. 360cm (przęsło 240cm) potrzebujesz {{klocki}} belki o długości 274cm</v-subheader>
+      </v-col>
+        <v-col cols="5"><v-text-field
+          label="Ilość belek 274cm"
+          value="10"
+          prefix="(szt)"
+        ></v-text-field></v-col>
+      </v-row>
+
+          <v-row>
+        <v-col cols="5"><v-subheader class="ml-10">Koszt fundamentów systemowych dla wybranej ilości materiaów wyniesie:</v-subheader>
+      </v-col>
+        <v-col cols="5">
+
+          <h2 class="font-weight-light center">1440 pln brutto</h2>
+        </v-col>
+      </v-row>
+
+
+           <v-row>
+             <!-- <v-col>
              <h3 class="font-weight-light ml-10 mt-6">Ilość słupów powyżej 35cm: {{klocki}} Ilość podstaw {{klocki*2}}</h3>
              <h3 class="font-weight-light ml-10 mt-6">Ilość belek: {{Math.round((fund*0.6/2.2)+0.5)}}szt x 220cm</h3>
-             <h3 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h3></v-col>
-             <v-col><v-img class="mt-6" contain height="400" src="../assets/fundamenty.jpg"></v-img></v-col>
+             <h3 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h3></v-col> -->
+             <v-col><v-img class="mt-6" contain height="300" src="../assets/fundamenty.jpg"></v-img></v-col>
            </v-row>
+
            <v-row>
-<v-col>
+<v-col cols="5">
 <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Tradycyjnie</h3>
+<h3 class="ml-10 mt-6 mb-6 font-weight-light">Poznaj nowoczesny system fundamentowy. <br> Rozstawiaj bloczki fundamentowe maksymalnie co 260 cm od ich krawędzi. Jeśli potrzebujesz pomocy w ustaleniu ilości - zapraszamy do naszego punktu sprzedazy w Trzebini przy ul. Długiej 51.</h3>
+
+<v-text-field
+          class="ml-10"
+          label="Długość fundamentów"
+          value="10"
+          prefix="(mb)"
+        ></v-text-field>
+        <v-text-field
+          label="Szerokość"
+          value="10"
+          prefix="(cm)"
+          class="ml-10"
+        ></v-text-field>
+        <v-text-field
+          label="Głębokość ponizej strefy przemarzania"
+          value="10"
+          prefix="(cm)"
+          class="ml-10"
+        ></v-text-field>
+        <v-text-field
+          label="Cena rynkowa za 1 m3 betonu z transportem"
+          value="10"
+          prefix="(pln)"
+          class="ml-10"
+        ></v-text-field>
+        <v-subheader class="ml-10">Koszt fundamentów tradycyjnych dla wybranych parametrów wyniesie:</v-subheader>
+        <h2 class="font-weight-light center">1440 pln brutto</h2>
 <h4 class="font-weight-light ml-10 mt-6">Zaplanowane ogrodzenie ma długość X mb. Podaj wymiary aby obliczyć ilość potrzebnego betonu.Tradycyjny fundament zakłada 30cm x 80 cm x długość</h4>
-<h4 class="font-weight-light ml-10 mt-6">Długość fundamentów {{fund*0.6}} m</h4>
-<h4 class="font-weight-light ml-10 mt-6">Szerokość 0.3m</h4>
-<h4 class="font-weight-light ml-10 mt-6">Głębokośc (poniżej strefy przemarzania) 0.8m</h4>
-<h4 class="font-weight-light ml-10 mt-6">Cena betonu za m2</h4>
-<h4 class="font-weight-light ml-10 mt-6">Szacunkowy koszt:</h4>
 
 </v-col>
-<v-col><v-img class="mt-6" contain height="400" src="../assets/cos.jpg"></v-img></v-col>
+<v-col cols="7"><v-img class="mt-6" contain height="400" src="../assets/cos.jpg"></v-img></v-col>
 
            </v-row>
          </v-card>
 
+         <v-parallax height="600" src="../assets/dworskalewa.jpg">
+          <h1 class="display-4 ml-10 mt-4">Wiele mozliwości</h1>
+          <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Wypełnień</h3>
+         </v-parallax>
+
          <v-card>
-           <v-row><v-col><h1 class="center display-4 ml-10 mt-4">Panele ogrodzeniowe</h1></v-col></v-row>
+           <v-row><v-col><h1 class="center display-4 ml-10 mt-4 mb-10">Panele ogrodzeniowe</h1></v-col></v-row>
            <v-row>
                  <v-col>
 <div class="s1img"><v-img class="ml-14" height="200" width="500" src="../assets/palis.png"></v-img></div>
              </v-col>
              <v-col>
 <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Wypełnienie na wiele sposobów</h3>
-<v-btn outlined right color="primary" class="ml-10 mt-10 pa-6">Przejdź do kreatora przęseł</v-btn>
+<v-btn outlined right color="primary" class="ml-10 mb-10 mt-10 pa-6">Przejdź do kreatora przęseł</v-btn>
              </v-col>
            </v-row>
          </v-card>
@@ -229,6 +320,8 @@ legend:true,
 lop:0.5,
 fund:0,
 klocki:0,
+kolor:["biały","czarny"],
+kolor_nazwa:"",
 
 rysuj_mape(){
   this.width = this.bloczek[this.bloczek_id].szerokosc*1.5;
