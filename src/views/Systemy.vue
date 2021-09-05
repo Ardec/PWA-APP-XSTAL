@@ -320,7 +320,7 @@ legend:true,
 lop:0.5,
 fund:0,
 klocki:0,
-kolor:["biały","czarny"],
+kolor:["Biały","Grafit","Latte","Lungo","Espresso","Mix A4 Czekolada", "Mix A5 Toffi", "Mix A6 MArago", "Mix A7 Wanilia" , "Mix A8 Mocca", "Mix A10 Romano", "Mix A11 Cappucino", "Mix A12 Frappe"],
 kolor_nazwa:"",
 
 rysuj_mape(){
@@ -431,7 +431,7 @@ editReply(index) {
 // max-height: 500px;
 display:flex;
 flex-wrap: wrap;
-background-image: url(../assets/houselong.jpg);
+background-image: url(../assets/houselong2.jpg);
 background-size: cover;
 }
 
