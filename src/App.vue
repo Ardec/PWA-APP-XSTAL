@@ -49,6 +49,16 @@
           </v-list-item-content>
         </v-list-item>
         </router-link>
+            <router-link tag="li" to="/Prety">
+        <v-list-item link>
+          <v-list-item-action>
+            <v-icon color="black">mdi-view-column-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title  class="font-weight-light">Wycena prętów zbrojeniowych</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        </router-link>
         <router-link tag="li" to="/montaze">
         <v-list-item link>
           <v-list-item-action>

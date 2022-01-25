@@ -3,7 +3,7 @@
 
 
     <v-card>
-      <v-img class="herotopimg" height="600" src="../assets/titleimgparallax.jpg"><span class="herotop mt-14">ZAPLANUJ SWOJE OGRODZENIE GITTEST</span>
+      <v-img class="herotopimg" height="600" src="../assets/titleimgparallax.jpg"><span class="herotop mt-14">ZAPLANUJ SWOJE OGRODZENIE</span>
       <v-img height="80" class="mt-10" contain src="../assets/kostbetwhite.png"></v-img>
       </v-img>
 
@@ -14,7 +14,7 @@
         <v-btn @click ="selected_draw = 2" class="ma-2 btn" dark color="black"><v-icon  medium color="white">mdi-menu</v-icon>Palisada</v-btn>
         <v-btn @click ="selected_draw = 3" class="ma-2 btn" dark color="purple"><v-icon  medium color="white">mdi-delete-forever-outline</v-icon>Usuń </v-btn>
         <v-btn class="ma-2 btn" color="indigo" dark @click ="selected_draw = 1"><v-icon  medium color="white">mdi-help</v-icon>Pomoc</v-btn>
-         <v-btn @click ="clear_map()" class="ma-2" right dark color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Resetuj</v-btn>
+        <v-btn @click ="clear_map()" class="ma-2 btn last" dark right color="red"><v-icon  medium color="white">mdi-autorenew</v-icon>Resetuj</v-btn>
         <div class="top_panel_data"><h4>ilość bloczków {{ilosc_bloczkow-fund}} szt </h4> </div>
         <div class="top_panel_data"><h4>ilość daszków {{fund}} szt </h4> </div>
         <div class="top_panel_data"><h4>Powierzchnia palisady {{Math.round(ilosc_paneli*0.6*0.125*100)/100}} m2</h4> </div>
@@ -30,7 +30,7 @@
          <v-card>
            <v-row>
              <v-col>
-<h1 class="display-4 ml-10 mt-4">Royal Slim</h1>
+<h1 class="display-2 ml-10 mt-4">Royal Slim</h1>
 <h3 color="primary" class="display-2 ml-10 mt-4 font-weight-light">Idealny wymiar</h3>
              </v-col>
              <v-col>
@@ -48,7 +48,7 @@
 
 
              </v-col>
-             <v-col cols="6">
+             <v-col cols="6" class="d-none d-lg-inline d-xl-none">
 <h2 color="primary" class="display-1 mt-16 font-weight-light">Ogrodzenie na lata</h2>
 <h3>Ogrodzenie murowane budujesz raz na kilkadziesiąt lat, co w porównaniu z trwałością innych ogrodzeń wychodzi najkorzystniej.</h3>
 
@@ -511,7 +511,6 @@ margin-right:10px;
 .btn
 {
 width:140px;
-background-color:red;
 }
 
 .herotopimg{
@@ -536,5 +535,33 @@ justify-content: center;
 div .calcsection{
 
 margin-bottom:0px;
+}
+
+
+@media screen and (max-width: 700px){
+.herotop{
+line-height:2rem;
+font-size: 2rem;
+}
+
+.control-panel{
+display:block;
+margin-right: 0px;
+width:100%;
+justify-self: stretch;
+justify-content: center;
+  .last{
+  display:block;
+  margin-right:16px!important;
+  flex-grow: 2;
+        }
+  .top_panel_data{
+  align-items: left;
+  justify-content: left;
+  margin-left:10px;
+                  }
+
+}
+
 }
 </style>

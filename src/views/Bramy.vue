@@ -45,7 +45,7 @@
          </p>
           <v-select @input="ustawiaj_opcje()" :items="rodzaj_produktu" v-model="rodzaj_produktu_wybrane_id" item-value="id" item-text="nazwa" label="Produkt" outlined></v-select>
       <p class="sitebot">Szerokośc / Światło w mb</p>
-      <v-slider v-model="swiatlo_bramy" @input="calculate()" step="0.1" thumb-label="always" min="1" max="8" color="black"></v-slider>
+      <v-slider v-model="swiatlo_bramy" @input="calculate()" step="0.1" thumb-label="always" :min="min_szerokosc" :max="max_szerokosc" color="black"></v-slider>
       <v-text-field type="number" outlined single-line step="0.1" v-model="swiatlo_bramy"></v-text-field>
       <p class="sitebot">Wysokość od gruntu</p>
       <v-slider v-model="wys" @input="calculate()" step="0.1" thumb-label="always" min="0.8" max="2.4" color="black"></v-slider>
@@ -117,11 +117,11 @@
          </p>
        <v-select @input="calculate()" :items="rodzaj_stali" v-model="rodzaj_stali_wybrane_id" item-value="id" item-text="nazwa" label="Materiał" outlined></v-select>
         <p class="sitebot">Profil konsturkcji Ramy</p>
-      <v-select @input="calculate()" :items="stal" item-text="nazwa" item-value="id" v-model ="qwe" label="Profil do budowy ramy" outlined></v-select>
+      <v-select @input="calculate()" :items="rama_konstrukcji" item-text="nazwa" item-value="id" v-model ="qwe" label="Profil do budowy ramy" outlined></v-select>
       <p class="sitebot">Słup 1</p>
-      <v-select @input="calculate()" :items="stal" item-text="nazwa" item-value="id" v-model ="slup1" label="Słup numer 1" outlined ></v-select>
+      <v-select @input="calculate()" :items="stal_slup" item-text="nazwa" item-value="id" v-model ="slup1" label="Słup numer 1" outlined ></v-select>
       <p class="sitebot">Słup 2</p>
-      <v-select @input="calculate()" :items="stal" item-text="nazwa" item-value="id" v-model ="slup2" label="Słup numer 2" outlined ></v-select>
+      <v-select @input="calculate()" :items="stal_slup" item-text="nazwa" item-value="id" v-model ="slup2" label="Słup numer 2" outlined ></v-select>
 
       </v-card>
 
@@ -191,8 +191,8 @@
               Wypełnienie w ceowniku 25x25x2. Wybierz profil i jego ułożenie na wypełnienie bramy.
             </p>
             <br>
-      <v-select @input="calculate()" :items="stal" item-text="nazwa" item-value="id" v-model ="qwe2" label="Profil wypełnienia" outlined ></v-select>
-      <v-slider @input="calculate()" v-model="odstep_miedzy_profilami" label="Przerwa między profilami (mm)" step="1" thumb-label="always" min="15" max="200" color="black"></v-slider>
+      <v-select @input="calculate()" :items="stal_wyp" item-text="nazwa" item-value="id" v-model ="qwe2" label="Profil wypełnienia" outlined ></v-select>
+      <v-slider @input="calculate()" v-model="odstep_miedzy_profilami" label="Przerwa między profilami (mm)" step="1" thumb-label="always" min="18" max="100" color="black"></v-slider>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -263,7 +263,7 @@
          </p>
          <v-checkbox v-if="rodzaj_stali_wybrane_id==0" v-on="calculate()" v-model="cynk" label="Cynkowanie" color="blue" value="1"></v-checkbox>
         <v-checkbox v-on="calculate()" v-model="lakier" label="Lakierowanie proszkowe" color="blue" value="1"></v-checkbox>
-        <v-checkbox v-on="calculate()" v-model="transport_do_klienta" label="Transport" color="blue" value="1"></v-checkbox>
+        <v-checkbox v-on="calculate()" v-model="transport_do_klienta" label="Transport do 23km" color="blue" value="1"></v-checkbox>
         <v-checkbox v-on="calculate()" v-model="montaz" label="Montaż" color="blue" value="1"></v-checkbox>
         <v-select v-if="rodzaj_produktu_wybrane_id==0" @input="policz_akcesoria()" multiple deletable-chips chips :items="akcesoria_furtka" item-text="nazwa" item-value="id" v-model ="akcf" label="Akcesoria do furtki" outlined item-disabled="customdisabled"></v-select>
         <v-select v-if="rodzaj_produktu_wybrane_id==1" @input="policz_akcesoria1()" multiple :items="akcesoria_bprz" item-text="nazwa" item-value="id" v-model ="akc_bprz" label="Akcesoria do bramy przesuwnej" outlined item-disabled="customdisabled"></v-select>
@@ -410,7 +410,10 @@ components: { ModelStl },
       cynkowanie:'',
       montaż:'',
       cena_montazu:'',
+      odstepy:'',
       },
+      max_szerokosc:2,
+      min_szerokosc:0.5,
       isActive:false,
       isactivealert:false,
       rodzaj_stali_wybrane_id: 1, // id itemu z selecta "materiał"
@@ -420,10 +423,10 @@ components: { ModelStl },
       cdb:0, // calkowita dlugosc bramy w mb obliczana w calculate()
       wys: 1.4, // wysokosc bramy suwak w mb
       swiatlo_bramy: 1, // swiatlo bramy suwak w mb
-      qwe: 5, // id profila do budowy ramy
+      qwe: 1, // id profila do budowy ramy
       qwe2: 2, // id profila do wypełnienia
-      slup1:15,
-      slup2:15,
+      slup1:1,
+      slup2:1,
       uslugi_i_akcesoria_pln:0,
       slup1_kg:0,
       slup2_kg:0,
@@ -437,8 +440,8 @@ components: { ModelStl },
       ceownik_kg:0,
       suma_pln:0,
       panele_cena:0, // plus zawijki i wkręty
-      lakiernia: 35, // lakierowanie za mb
-      ocynkownia: 3.1, // cynkowanie za mb
+      lakiernia: 60, // lakierowanie za m2
+      ocynkownia: 3.5, // cynkowanie za mb
       narzut: 2, // narzut mnożnik
       akcf:0,
       akc_bdw:null,
@@ -453,9 +456,9 @@ components: { ModelStl },
       kotwy:0,
       podp:0,
       antaba:0,
-      transport_do_klienta:0,
-      cynk:0,
-      lakier:0,
+      transport_do_klienta:"1",
+      cynk:"1",
+      lakier:"1",
       cynk_cena:0,
       lakier_cena:0,
       szyna_kg:0,
@@ -469,13 +472,13 @@ components: { ModelStl },
       profil_konstrukcja_waga: 0,
       suma_akcesoria_pln:0,
       rodzaj_stali: [
-        {id:0,nazwa:'Profile z czarnej stali',cena_za_kg:6.3,gestosc:7600},
-        {id:1,nazwa:'Profile ocynkowane',cena_za_kg:8.5,gestosc:7600},
+        {id:0,nazwa:'Profile z czarnej stali',cena_za_kg:6.8,gestosc:7600},
+        // {id:1,nazwa:'Profile ocynkowane',cena_za_kg:8.5,gestosc:7600},
         ],
         uslugi: [
         {id:0,nazwa:'Cynkowanie',cena:60,customdisabled:false},
         {id:1,nazwa:'Lakierowanie',cena:70,customdisabled:false,},
-        {id:2,nazwa:'Transport',cena:30,customdisabled:false,},
+        {id:2,nazwa:'Transport',cena:50,customdisabled:false,},
         {id:3,nazwa:'Montaż',cena:3000,customdisabled:false,},
         {id:4,nazwa:'Wylanie stopy',cena:3000,customdisabled:true,},
         ],
@@ -502,7 +505,7 @@ components: { ModelStl },
         akcesoria_bdw: [
         {id:0,nazwa:'zamek wąski wpuszczany 90mm zapadka',cena:14.23,customdisabled:false},
         {id:1,nazwa:'zamek wąski wpuszczany 90mm rolka',cena:14.23,customdisabled:false},
-        {id:2,nazwa:'napęd bramy dwuskrzydłowej',cena:1000,customdisabled:false,}, // normalna cena zakupu 1350 zaniżona ponieważ liczy x2
+        {id:2,nazwa:'napęd bramy dwuskrzydłowej',cena:1000,customdisabled:false,}, // normalna cena zakupu 1350 zaniżona ponieważ liczy x2 marze na produkcie
         {id:3,nazwa:'montaż napędu',cena:600,customdisabled:false,},
         {id:4,nazwa:'klamka 90mm ZJ',cena:7.80,customdisabled:false},
         {id:5,nazwa:'klamka 90mm TP',cena:21.96,customdisabled:false},
@@ -521,7 +524,7 @@ components: { ModelStl },
         {id:18,nazwa:'zasuwa standard ocynk TP',cena:18.48,customdisabled:false},
         ],
         akcesoria_bprz: [
-        {id:0,nazwa:'słup stabilizujący 60x60x2',cena:150,customdisabled:false},
+        {id:0,nazwa:'słup stabilizujący 80x80x2',cena:250,customdisabled:false},
         {id:1,nazwa:'napęd słupkowy z kogutem',cena:950,customdisabled:false,}, // normalna cena zakupu 1350 zaniżona ponieważ liczy x2
         {id:2,nazwa:'montaż napędu',cena:500,customdisabled:false,},
         {id:3,nazwa:'zębatki',cena:90,customdisabled:false,}, // 5.6 mb zakładamy 5mb zębatek
@@ -541,9 +544,9 @@ components: { ModelStl },
         {id:17,nazwa:'antaba',cena:75,customdisabled:false,},
         ],
         rodzaj_produktu: [
-        {id:0,nazwa:'Furtka',narzut:2, montaz:400},
-        {id:1,nazwa:'Brama przesuwna',narzut:2, montaz: 2000},
-        {id:2,nazwa:'Brama dwuskrzydłowa',narzut:2, montaz: 2000},
+        {id:0,nazwa:'Furtka',narzut:2.2, montaz:500},
+        {id:1,nazwa:'Brama przesuwna',narzut:2.3, montaz: 2000},
+        {id:2,nazwa:'Brama dwuskrzydłowa',narzut:2.5, montaz: 2000},
         ],
       stal: [
           {id:0,nazwa: '40x40x1.5 mm',a: 40,b: 40,gr:1.5,kategoria:'profile zamknięte'},
@@ -567,6 +570,30 @@ components: { ModelStl },
           {id:18,nazwa: '80x80x4.0 mm',a: 80,b: 80,gr:4,kategoria:'profile zamknięte'},
           {id:19,nazwa: 'Brak',a: 0,b: 0,gr:4,kategoria:'profile zamknięte'},
         ],
+        stal_wyp: [
+          {id:0,nazwa: '40x40x1.5 mm',a: 40,b: 40,gr:1.5,kategoria:'profile zamknięte'},
+          {id:1,nazwa: '60x20x1.5 mm',a: 60,b: 20,gr:1.5,kategoria:'profile zamknięte'},
+          {id:2,nazwa: '80x20x1.5 mm',a: 80,b: 20,gr:1.5,kategoria:'profile zamknięte'},
+          {id:3,nazwa: '100x20x1.5 mm',a: 100,b: 20,gr:1.5,waga:0,kategoria:'profile zamknięte'},
+          {id:4,nazwa: 'Brak',a: 0,b: 0,gr:4,kategoria:'profile zamknięte'},
+        ],
+        stal_slup: [
+          {id:0,nazwa: '60x60x1.5 mm',a: 60,b: 60,gr:1.5,kategoria:'profile zamknięte'},
+          {id:1,nazwa: '60x60x2.0 mm',a: 60,b: 60,gr:2,kategoria:'profile zamknięte'},
+          {id:2,nazwa: '60x60x3.0 mm',a: 60,b: 60,gr:3,kategoria:'profile zamknięte'},
+          {id:3,nazwa: '80x80x2.0 mm',a: 80,b: 80,gr:2,kategoria:'profile zamknięte'},
+          {id:4,nazwa: '80x80x3.0 mm',a: 80,b: 80,gr:3,kategoria:'profile zamknięte'},
+          {id:5,nazwa: '80x80x4.0 mm',a: 80,b: 80,gr:4,kategoria:'profile zamknięte'},
+          {id:6,nazwa: '100x100x2.0 mm',a: 100,b: 100,gr:2,kategoria:'profile zamknięte'},
+          {id:7,nazwa: '100x100x3.0 mm',a: 100,b: 100,gr:3,kategoria:'profile zamknięte'},
+          {id:8,nazwa: '100x100x4.0 mm',a: 100,b: 100,gr:4,kategoria:'profile zamknięte'},
+          {id:9,nazwa: 'Brak',a: 0,b: 0,gr:0,kategoria:'profile zamknięte'},
+        ],
+        rama_konstrukcji: [
+          {id:0,nazwa: '40x40x2.0 mm',a: 40,b: 40,gr:2,kategoria:'profile zamknięte'},
+          {id:1,nazwa: '60x40x2.0 mm',a: 60,b: 40,gr:2,kategoria:'profile zamknięte'},
+          {id:2,nazwa: '80x40x2.0 mm',a: 80,b: 40,gr:2,kategoria:'profile zamknięte'},
+        ],
       panele: [
           {id:0,nazwa: '123 fi 4',cena: 48,waga: 3,kategoria:'panele'},
           {id:1,nazwa: '123 fi 5',cena: 68,waga: 5,kategoria:'panele'},
@@ -578,9 +605,9 @@ components: { ModelStl },
       calculate: function(){
           this.obwod = Math.round((this.swiatlo_bramy*2 + this.wys*2)*100)/100
           this.profil_konstrukcja_mb = this.obwodpw+this.obwod+this.ramka_dolem
-          this.profil_konstrukcja_waga = Math.round((((((this.stal[this.qwe].a*2/1000)+(this.stal[this.qwe].b*2/1000))*this.stal[this.qwe].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.profil_konstrukcja_mb))*100)/100
-          this.slup1_kg = (((((this.stal[this.slup1].a*2/1000)+(this.stal[this.slup1].b*2/1000))*this.stal[this.slup1].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wys+0.6))
-          this.slup2_kg = (((((this.stal[this.slup2].a*2/1000)+(this.stal[this.slup2].b*2/1000))*this.stal[this.slup2].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wys+0.6))
+          this.profil_konstrukcja_waga = Math.round((((((this.rama_konstrukcji[this.qwe].a*2/1000)+(this.rama_konstrukcji[this.qwe].b*2/1000))*this.rama_konstrukcji[this.qwe].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.profil_konstrukcja_mb))*100)/100
+          this.slup1_kg = (((((this.stal_slup[this.slup1].a*2/1000)+(this.stal_slup[this.slup1].b*2/1000))*this.stal_slup[this.slup1].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wys+0.6))
+          this.slup2_kg = (((((this.stal_slup[this.slup2].a*2/1000)+(this.stal_slup[this.slup2].b*2/1000))*this.stal_slup[this.slup2].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wys+0.6))
           this.calculate_kg()
           if (this.selection == 1){
           this.ramka_dolem = 0
@@ -588,7 +615,7 @@ components: { ModelStl },
           this.ceownik_kg = this.ceownik_mb*1.22
           this.wyp_szt = (((this.wys*1000-((this.stal[this.qwe].a*2)+160-this.odstep_miedzy_profilami)))/1000)/((this.stal[this.qwe2].a+this.odstep_miedzy_profilami)/1000)
           this.wyp_mb = (this.swiatlo_bramy-(this.stal[this.qwe].a*2)/1000)*(((this.wys*1000-((this.stal[this.qwe].a*2)+160-this.odstep_miedzy_profilami)))/1000)/((this.stal[this.qwe2].a+this.odstep_miedzy_profilami)/1000)
-          this.wyp_kg = ((((this.stal[this.qwe2].a*2/1000)+(this.stal[this.qwe2].b*2/1000))*this.stal[this.qwe2].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wyp_mb)
+          this.wyp_kg = ((((this.stal_wyp[this.qwe2].a*2/1000)+(this.stal_wyp[this.qwe2].b*2/1000))*this.stal_wyp[this.qwe2].gr/1000)*this.rodzaj_stali[this.rodzaj_stali_wybrane_id].gestosc)*(this.wyp_mb)
           }else{
             if(this.ramka == 1){this.ramka_dolem = this.swiatlo_bramy*2}else{this.ramka_dolem = 0}
             this.ceownik_mb = 0
@@ -624,8 +651,8 @@ components: { ModelStl },
       this.templateParams.wys = this.wys;
       this.templateParams.material = this.rodzaj_stali[this.rodzaj_stali_wybrane_id].nazwa;
       this.templateParams.szer = this.swiatlo_bramy;
-      this.templateParams.slup1 = this.stal[this.slup1].nazwa;
-      this.templateParams.slup2 = this.stal[this.slup2].nazwa;
+      this.templateParams.slup1 = this.stal_slup[this.slup1].nazwa;
+      this.templateParams.slup2 = this.stal_slup[this.slup2].nazwa;
       this.templateParams.wysokoscslupa = this.wys + 0.6;
       this.templateParams.cynkowanie = this.rodzaj_stali_wybrane_id == 0 && this.cynk== 1 ? "Tak" : "Nie";
       this.templateParams.transport = this.transport_do_klienta == 1 ? "Tak" : "Nie";
@@ -634,13 +661,14 @@ components: { ModelStl },
       this.templateParams.cena = Math.round((this.suma_pln*1.23))
       this.templateParams.waga = this.suma_kg
       this.templateParams.cena_montazu = "1000 i nie"
-      this.templateParams.rama = this.stal[this.qwe].nazwa;
+      this.templateParams.rama = this.rama_konstrukcji[this.qwe].nazwa;
       this.templateParams.rodzaj = this.rodzaj_produktu[this.rodzaj_produktu_wybrane_id].nazwa;
       if(this.selection == 0)
       {
       this.templateParams.wypelnienie = 'Panel ogrodzeniowy ' + this.panele[this.rodzaj_paneli_wybrane_id].nazwa
       }else {
-        this.templateParams.wypelnienie = 'Palisada stalowa ' + this.stal[this.qwe2].nazwa
+        this.templateParams.wypelnienie = 'Palisada stalowa ' + this.stal_wyp[this.qwe2].nazwa
+        this.templateParams.odstepy = 'Odstepy pomiędzy profilami w przyblieniu ' + this.odstep_miedzy_profilami
         }
       if(this.ramka == 1 && this.selection == 0)
         {this.templateParams.wypelnienie += ' *plus ramka z podwójnego profila dołem';
@@ -725,9 +753,13 @@ components: { ModelStl },
           this.obwod = Math.round((((this.swiatlo_bramy-0.08)*2 + (this.wys-0.08)*2))*100)/100
           this.obwodpw = 0
           this.swiatlo_bramy = 1
-          this.rodzaj_stali_wybrane_id = 1
+          this.rodzaj_stali_wybrane_id = 0
           this.szyna_mb = 0
           this.szyna_kg = 0
+          this.max_szerokosc = 2
+          this.min_szerokosc = 0.6
+          this.slup1=1
+          this.slup2=1
           this.calculate()
         }else if(this.rodzaj_produktu_wybrane_id == 1){
           this.akc_bprz = [0,6,7,8,11,12,13,14,16]
@@ -740,6 +772,10 @@ components: { ModelStl },
           this.szyna_mb = this.swiatlo_bramy + this.pw
           this.szyna_kg = ((this.swiatlo_bramy + this.pw))*10
           this.swiatlo_bramy = 4
+          this.max_szerokosc = 7
+          this.min_szerokosc = 2
+          this.slup1=3
+          this.slup2=3
           this.calculate()
         }else if(this.rodzaj_produktu_wybrane_id == 2){
           this.akc_bdw = [0,5,6,7,8,11,14,16,18]
@@ -751,6 +787,10 @@ components: { ModelStl },
           this.obwodpw = 0
           this.szyna_mb = 0
           this.szyna_kg = 0
+          this.max_szerokosc = 5
+          this.min_szerokosc = 1.2
+          this.slup1=4
+          this.slup2=4
           this.calculate()
         }
       },
@@ -774,7 +814,9 @@ components: { ModelStl },
   margin-top:20px;
   margin-bottom:40px;
 }
-
+.container{
+max-width:100%;
+}
 div .trzyde{
   width:100%;
   height:400px;

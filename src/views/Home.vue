@@ -15,7 +15,7 @@
     </v-btn></div> -->
       </v-row>
 
-      <v-row>
+      <!-- <v-row>
 <v-parallax class="gates"
 src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
 
@@ -46,7 +46,7 @@ src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
 
 </v-parallax>
 
-      </v-row>
+      </v-row> -->
 
 
 

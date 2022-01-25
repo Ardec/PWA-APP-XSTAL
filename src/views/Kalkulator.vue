@@ -40,13 +40,13 @@
     <v-text-field type="number" outlined single-line step="0.1" v-model="dl_og"></v-text-field>
     <v-checkbox v-on="calculate()" v-model="montaz" label="Wycena ogrodzenia z montażem" color="blue" value="1"></v-checkbox>
 </v-col>
-<v-col>
+<!-- <v-col>
   <p class="sitebot">WIZUALIZACJA poglądowa OGRODZENIA</p>
- <div class="trzyde">
-         <model-stl backgroundAlpha="0" height="300" src="img/fpanel.stl"></model-stl>
+ <div class="trzyde"> -->
+         <!-- <model-stl backgroundAlpha="0" height="300" src="img/fpanel.stl"></model-stl> -->
          <!-- <model-stl v-if="rodzaj_produktu_wybrane_id==0 && selection==1" backgroundAlpha="0" height="300" src="img/fpalisada.stl"></model-stl> -->
-    </div>
-</v-col>
+    <!-- </div>
+</v-col> -->
     </v-row>
     </v-card>
 
@@ -295,9 +295,6 @@
 
           <v-btn @click="wysylaj(templateParams)" block color="primary">Zarezerwuj cenę materiałów</v-btn>
 </v-col>
-<v-col>
-  <!-- 2 -->
-</v-col>
     </v-row>
     </v-card>
 
@@ -329,14 +326,14 @@
 
 <script>
 
-import { ModelStl } from 'vue-3d-model';
+// import { ModelStl } from 'vue-3d-model';
 import emailjs from 'emailjs-com';
 
 
 
   export default {
 
-    components: { ModelStl },
+    // components: { ModelStl },
 
     props: {
       source: String,
@@ -564,6 +561,11 @@ import emailjs from 'emailjs-com';
 </script>
 
 <style lang="scss">
+
+.container{
+width: 100%;
+}
+
 .kolumna{
 border-right: solid black 1px
 }
